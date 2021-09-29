@@ -65,6 +65,20 @@ function checkPasswordsMatch(input1, input2) {
   }
 }
 
+// Check strong password
+
+function checkStrongPassword(input) {
+  const strongPass = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+  if (strongPass.test(password2.value)) {
+    showSuccess(input);
+  } else {
+    showError(
+      input,
+      "Password must contain at least a special character, numbers, ..."
+    );
+  }
+}
+
 // Get fieldname
 function getFieldName(input) {
   return input.id.charAt(0).toUpperCase() + input.id.slice(1);
@@ -79,4 +93,5 @@ form.addEventListener("submit", (e) => {
   checkLength(password, 3, 10);
   checkEmail(email);
   checkPasswordsMatch(password, password2);
+  checkStrongPassword(password2);
 });
